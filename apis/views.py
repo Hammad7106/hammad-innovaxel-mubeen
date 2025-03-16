@@ -40,3 +40,17 @@ class RetrieveOriginalURL(APIView):
         # Render the template with the URL details
         return render(request, 'retrieve_url.html', {'url': url})
 
+class UpdateShortURL(APIView):
+    def put(self, request, short_code):
+        url = get_object_or_404(ShortURL, short_code=short_code)
+
+        if 'url' not in request.data:
+            return Response(
+                {"error": "The 'url' field is required."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        url.original_url = request.data['url']
+        url.save()
+
+        serializer = ShortURLSerializer(url)
+        return Response(serializer.data, status=status.HTTP_200_OK)
