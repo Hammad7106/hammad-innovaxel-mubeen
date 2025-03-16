@@ -1,11 +1,20 @@
 # hammad-innovaxel-mubeen
 Url Shortner Home Assignment
 
-# SET UP INSTRUCTIONS
+# 📌 Features
+🔗 Create a Short URL: Converts long URLs into short, manageable links.
+🔄 Retrieve Original URL: Redirects or fetches the original URL using the short code.
+✏️ Update Short URL: Modify the original URL associated with a short link.
+❌ Delete Short URL: Remove a short URL from the database.
+📊 View URL Statistics: Track how many times a short URL has been accessed.
 
-1- Clone this repository by git clone repo-name.
+# 🚀 Setup Instructions
 
-2- Set up Database in MySQL and integrate with Django. In Project's settings.py add DATABASES = {
+1️⃣ Clone the Repository
+
+2️⃣ Set Up MySQL Database
+In Project's settings.py add.
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'your_db_name',
@@ -16,19 +25,29 @@ Url Shortner Home Assignment
     }
 }
 
-3- Install Project Requirements by pip install -r requirements.txt.
-4- Apply migrations by python manage.py migrate.
-4- After that run the server by python manage.py runserver.
-5- Your Project is now running on your local server.
+3️⃣ Install Dependencies
+pip install -r requirements.txt
 
-# PROJECT GO THROUGH
+4️⃣ Apply Migrations
+python manage.py migrate
+
+5️⃣ Run the Server
+python manage.py runserver
+
+# 🖥️ Project Walkthrough
 This API's of this project are built in REST with the help of Django Rest Framework.
 
-1- CREATE SHORT URL.
-When you will run the project then a front-end page will appear which asks for the url you want to shorten. You will paste your desired url and in return it will generate the Short URl for your original URL.
+1️⃣ Create a Short URL
+Visit http://127.0.0.1:8000/
+Enter your long URL in the input box.
+Click Shorten URL to generate a short link.
 
-2- GET ORIGINAL URL, UPDATE URL, DELETE URL
-When we click on the Short URl which we got from create url page then we will have all the options to get original url, update the url and delete the url. Instead we can also go to the url like http://127.0.0.1:8000/your_short_url/
+2️⃣ Retrieve, Update, or Delete a Short URL
+Click on the generated short URL to access update and delete options.
+Alternatively, visit http://127.0.0.1:8000/<your_short_code>/
 
-3- STATISTICS OF URL
-In the RUD Operations above we have also the count of url accessed but if we want it seperately then we can get the statistics by http://127.0.0.1:8000/your_short_url/stats/
+3️⃣ View URL Statistics
+
+As the above endpoints will show the access count of each url but alternatively we can access at:
+http://127.0.0.1:8000/<your_short_code>/stats/
+
