@@ -8,7 +8,6 @@ from .models import ShortURL
 from .serializers import ShortURLSerializer
 
 class CreateShortURL(APIView):
-
     def get(self, request):
         # Render the HTML template for the frontend
         return render(request, 'create_short_url.html')
@@ -34,19 +33,10 @@ class RetrieveOriginalURL(APIView):
         url.save()
 
         # Return JSON data for API requests
-        if request.accepted_renderer.format == 'json':
-            return Response(ShortURLSerializer(url).data)
+        return Response(ShortURLSerializer(url).data)
 
-        # Render the template with the URL details
-        return render(request, 'retrieve_url.html', {'url': url})
 
-class UpdateShortURL(APIView):
-
-    def get(self, request, short_code):
-        url = get_object_or_404(ShortURL, short_code=short_code)
-        serializer = ShortURLSerializer(url)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
+class UpdateShortURL(RetrieveOriginalURL):
     def put(self, request, short_code):
         url = get_object_or_404(ShortURL, short_code=short_code)
 
@@ -61,15 +51,12 @@ class UpdateShortURL(APIView):
         serializer = ShortURLSerializer(url)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-class DeleteShortURL(APIView):
-    # ✅ GET method to retrieve short URL details
-    def get(self, request, short_code):
-        url = get_object_or_404(ShortURL, short_code=short_code)
-        serializer = ShortURLSerializer(url)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
-    # ✅ DELETE method to remove the short URL
+class DeleteShortURL(RetrieveOriginalURL):
     def delete(self, request, short_code):
         url = get_object_or_404(ShortURL, short_code=short_code)
         url.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class GetURLStatistics(RetrieveOriginalURL):
+    pass
