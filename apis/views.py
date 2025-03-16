@@ -41,6 +41,12 @@ class RetrieveOriginalURL(APIView):
         return render(request, 'retrieve_url.html', {'url': url})
 
 class UpdateShortURL(APIView):
+
+    def get(self, request, short_code):
+        url = get_object_or_404(ShortURL, short_code=short_code)
+        serializer = ShortURLSerializer(url)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
     def put(self, request, short_code):
         url = get_object_or_404(ShortURL, short_code=short_code)
 
@@ -54,3 +60,16 @@ class UpdateShortURL(APIView):
 
         serializer = ShortURLSerializer(url)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+class DeleteShortURL(APIView):
+    # ✅ GET method to retrieve short URL details
+    def get(self, request, short_code):
+        url = get_object_or_404(ShortURL, short_code=short_code)
+        serializer = ShortURLSerializer(url)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    # ✅ DELETE method to remove the short URL
+    def delete(self, request, short_code):
+        url = get_object_or_404(ShortURL, short_code=short_code)
+        url.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
