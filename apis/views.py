@@ -23,3 +23,20 @@ def redirect_to_original(request, short_code):
     print('Short Code recieved',short_code)
     url = get_object_or_404(ShortURL, short_code=short_code)
     return redirect(url.original_url)
+
+class RetrieveOriginalURL(APIView):
+    def get(self, request, short_code):
+        # Retrieve the ShortURL object or return 404
+        url = get_object_or_404(ShortURL, short_code=short_code)
+
+        # Increment the access count
+        url.access_count += 1
+        url.save()
+
+        # Return JSON data for API requests
+        if request.accepted_renderer.format == 'json':
+            return Response(ShortURLSerializer(url).data)
+
+        # Render the template with the URL details
+        return render(request, 'retrieve_url.html', {'url': url})
+
