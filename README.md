@@ -2,10 +2,15 @@
 Url Shortner Home Assignment
 
 # 📌 Features
+
 🔗 Create a Short URL: Converts long URLs into short, manageable links.
+
 🔄 Retrieve Original URL: Redirects or fetches the original URL using the short code.
+
 ✏️ Update Short URL: Modify the original URL associated with a short link.
+
 ❌ Delete Short URL: Remove a short URL from the database.
+
 📊 View URL Statistics: Track how many times a short URL has been accessed.
 
 # 🚀 Setup Instructions
@@ -38,11 +43,13 @@ python manage.py runserver
 This API's of this project are built in REST with the help of Django Rest Framework.
 
 1️⃣ Create a Short URL
+
 Visit http://127.0.0.1:8000/
 Enter your long URL in the input box.
 Click Shorten URL to generate a short link.
 
 2️⃣ Retrieve, Update, or Delete a Short URL
+
 Click on the generated short URL to access update and delete options.
 Alternatively, visit http://127.0.0.1:8000/<your_short_code>/
 
