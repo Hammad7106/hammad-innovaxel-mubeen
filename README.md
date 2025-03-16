@@ -3,7 +3,7 @@ Url Shortner Home Assignment
 
 # 📌 Features
 
-🔗 Create a Short URL: Converts long URLs into short, manageable links.
+🔗 Create a Short URL: Converts long URLs into short code.
 
 🔄 Retrieve Original URL: Redirects or fetches the original URL using the short code.
 
