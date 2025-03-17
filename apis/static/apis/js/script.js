@@ -18,10 +18,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (response.ok) {
                 const data = await response.json();
+                // Ensure the short_code is used as-is (without adding a slash)
+                const shortCode = data.short_code; // No need to modify, backend already provides it correctly
                 document.getElementById('result').innerHTML = `
                     <p>Short URL created successfully!</p>
                     <p>Original URL: <a href="${data.original_url}" target="_blank">${data.original_url}</a></p>
-                    <p>Short URL: <a href="/${data.short_code}" target="_blank">/${data.short_code}</a></p>
+                    <p>Short URL: <a href="${data.short_code}" target="_blank">${data.short_code}</a></p>
                 `;
             } else {
                 const error = await response.json();
